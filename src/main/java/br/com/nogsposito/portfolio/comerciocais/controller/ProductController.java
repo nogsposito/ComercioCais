@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.nogsposito.portfolio.comerciocais.controller.dto.product.ProductRequestDTO;
+import br.com.nogsposito.portfolio.comerciocais.controller.dto.product.ProductResponseDTO;
 import br.com.nogsposito.portfolio.comerciocais.domain.product.Product;
-import br.com.nogsposito.portfolio.comerciocais.repository.ProductRepository;
 import br.com.nogsposito.portfolio.comerciocais.service.ProductService;
 import jakarta.validation.Valid;
 
@@ -22,14 +22,11 @@ import jakarta.validation.Valid;
 public class ProductController {
     
     @Autowired
-    private ProductRepository repository;
-
-    @Autowired
     private ProductService service;
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts(){
-        return ResponseEntity.ok(repository.findAll());
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(){
+        return ResponseEntity.ok(service.getAllProducts());
     }
 
     @PostMapping
